@@ -1,0 +1,22 @@
+Steps for Calorie Estimation using PyTorch
+1. Data Preparation
+Extract image frames from videos (ffmpeg or provided scripts).
+Load metadata (calories per dish) and match it with corresponding images.
+Split data into training and testing sets.
+2. Data Preprocessing
+Resize images, normalize pixel values.
+Apply augmentations (e.g., rotation, flipping).
+Convert metadata into a numerical format.
+3. Model Selection
+Use a pretrained CNN (e.g., ResNet, EfficientNet) for feature extraction.
+Modify the final layer for calorie regression.
+4. Training Setup
+Define a loss function (Mean Squared Error or Mean Absolute Error).
+Choose an optimizer (Adam, SGD).
+Implement a training loop with batch updates.
+5. Model Evaluation
+Compute MAE and RMSE.
+Compare predictions with actual calorie values.
+6. Inference & Deployment
+Test on new food images.
+(Optional) Build a simple Flask or FastAPI endpoint.
