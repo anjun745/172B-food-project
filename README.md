@@ -5,7 +5,8 @@ This project aims to help people in their day-to-day lives. Based on an image of
 
 https://github.com/google-research-datasets/Nutrition5k?tab=readme-ov-file
 
-# Requirements
+# Walkthrough
 * Ideally, Python 3.12 is installed
 * Run source venv/activate/bin
 * Run pip3 install -r requirements.txt 
+* Install training data: ```gsutil -m cp -r "gs://nutrition5k_dataset/nutrition5k_dataset/imagery/realsense_overhead" .```
