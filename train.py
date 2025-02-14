@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 import torchvision.transforms as transforms
-from torchvision import models, datasets
+from torchvision import models
 from torch.utils.data import DataLoader, Dataset
 import pandas as pd
 from PIL import Image
@@ -10,34 +10,52 @@ import os
 
 # 1. Dataset Class
 class FoodDataset(Dataset):
-    def __init__(self, image_dir, metadata_csv, transform=None):
-        self.image_dir = image_dir
-        self.data = pd.read_csv(metadata_csv)
+    def __init__(self, root_dir, metadata_csv, transform=None):
+        self.root_dir = root_dir
         self.transform = transform
+        self.data = pd.read_csv(metadata_csv, usecols=range(8))  # Load only first 8 columns
+
+        # Print column names for debugging
+        print("Columns in CSV:", self.data.columns)
+
+        # Construct full image paths by iterating through subfolders
+        self.image_paths = []
+        for subdir in os.listdir(root_dir):
+            img_path = os.path.join(root_dir, subdir, "rgb.png")
+            if os.path.exists(img_path):
+                self.image_paths.append(img_path)
+
+        # Debugging: Check if paths exist
+        for path in self.image_paths:
+            if not os.path.exists(path):
+                print(f"File not found: {path}")
 
     def __len__(self):
-        return len(self.data)
+        return len(self.image_paths)
 
     def __getitem__(self, idx):
-        img_path = os.path.join(self.image_dir, self.data.iloc[idx]["dish_id"] + ".jpg")
+        img_path = self.image_paths[idx]
         image = Image.open(img_path).convert("RGB")
-        label = torch.tensor(self.data.iloc[idx]["total_calories"], dtype=torch.float32)
-        
+
         if self.transform:
             image = self.transform(image)
-            
-        return image, label
 
-# 2. Data Transforms
+        calories = self.data.iloc[idx][self.data.columns[1]]  # Adjust if needed based on actual column name
+        return image, torch.tensor(calories, dtype=torch.float32)
+
+# Example usage:
+dataset_path = r"D:/study/CS172B/realsense_overhead"
+metadata_path = r"D:\study\CS172B\172B-food-project\nutrition5k_dataset_metadata_dish_metadata_cafe1.csv"
+
 transform = transforms.Compose([
     transforms.Resize((224, 224)),
     transforms.ToTensor(),
-    transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
 ])
 
-# 3. Load Dataset
-train_dataset = FoodDataset("path_to_images", "metadata/dish_metadata_cafe1.csv", transform=transform)
+train_dataset = FoodDataset(dataset_path, metadata_path, transform=transform)
 train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True)
+
+print(f"Loaded {len(train_dataset)} images.")
 
 # 4. Load Pretrained Model
 model = models.resnet50(pretrained=True)
