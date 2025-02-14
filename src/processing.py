@@ -16,7 +16,7 @@ for subdir, dirs, files in os.walk(rootdir):
             os.remove(filename)
 
 #Resize images
-for subdir, dirs, files in os.walk(rootdir):
+"""for subdir, dirs, files in os.walk(rootdir):
     for file in files:
         filename = os.path.join(subdir, file)
         if '.png' in filename:
@@ -24,8 +24,13 @@ for subdir, dirs, files in os.walk(rootdir):
             img = img.resize((width, height), Image.Resampling.LANCZOS)
             img.save(filename)
 
+
+#Move files into one directory
 for subdir, dirs, files in os.walk(rootdir):
     for file in files:
         filename = os.path.join(subdir, file)
-        print(filename)
+        os.rename(filename, f"{rootdir}/{subdir}.png")"""
+        
+for subdir, dirs, files in os.walk(rootdir):
+    os.remove(subdir)
 
