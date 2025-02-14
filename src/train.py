@@ -2,8 +2,8 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 import torchvision.transforms as transforms
-from torchvision import models, datasets
-from torch.utils.data import DataLoader, Dataset
+from torchvision import models
+from torch.utils.data import DataLoader
 import pandas as pd
 from PIL import Image
 import os
