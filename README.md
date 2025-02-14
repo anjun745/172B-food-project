@@ -4,3 +4,8 @@ This project aims to help people in their day-to-day lives. Based on an image of
 
 
 https://github.com/google-research-datasets/Nutrition5k?tab=readme-ov-file
+
+# Requirements
+* Ideally, Python 3.12 is installed
+* Run source venv/activate/bin
+* Run pip3 install -r requirements.txt 
