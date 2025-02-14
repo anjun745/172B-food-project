@@ -1,6 +1,7 @@
 import os
 from PIL import Image
 
+
 height = 400
 width = 400
 
