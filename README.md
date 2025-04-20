@@ -12,3 +12,4 @@ https://github.com/google-research-datasets/Nutrition5k?tab=readme-ov-file
 * Download training data: ```gsutil -m cp -r "gs://nutrition5k_dataset/nutrition5k_dataset/imagery/realsense_overhead" .```
 * Run processing.py to resize, rename and move data to a single directory
 * Run ```find /path/to/172B-food-project/realsense_overhead -mindepth 1 -type d -exec rm -r {} +``` to delete the remaining empty directories
+* Use the ipynb instead of the train.py
