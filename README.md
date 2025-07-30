@@ -1,4 +1,4 @@
-# 172B-food-project
+# 172B-food-project: Back-Propa-Plate
 
 This project aims to help people in their day-to-day lives. Based on an image of a dish, our Neural Network predicts the calories in that image. We are using an open-source dataset that contains videos of food as well as nutrients and calories for single ingredients and entire dishes. By using a Convolutional Neural Network, we want to get features such as what dish we're looking at, what ingredients are contained, how greasy the food looks etc. and then perform regression to predict calories.
 
@@ -13,3 +13,5 @@ https://github.com/google-research-datasets/Nutrition5k?tab=readme-ov-file
 * Run processing.py to resize, rename and move data to a single directory
 * Run ```find /path/to/172B-food-project/realsense_overhead -mindepth 1 -type d -exec rm -r {} +``` to delete the remaining empty directories
 * Use the ipynb instead of the train.py
+Final Presentation:
+https://docs.google.com/presentation/d/1mFSaD0nfCwDJEUKZ6zTBOryLc2YN_JJUXWTd6KtzZ5U/edit?slide=id.g33a5f474caf_0_26#slide=id.g33a5f474caf_0_26
