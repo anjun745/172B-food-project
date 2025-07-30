@@ -13,5 +13,5 @@ https://github.com/google-research-datasets/Nutrition5k?tab=readme-ov-file
 * Run processing.py to resize, rename and move data to a single directory
 * Run ```find /path/to/172B-food-project/realsense_overhead -mindepth 1 -type d -exec rm -r {} +``` to delete the remaining empty directories
 * Use the ipynb instead of the train.py
-Final Presentation:
+# Final Presentation:
 https://docs.google.com/presentation/d/1mFSaD0nfCwDJEUKZ6zTBOryLc2YN_JJUXWTd6KtzZ5U/edit?slide=id.g33a5f474caf_0_26#slide=id.g33a5f474caf_0_26
